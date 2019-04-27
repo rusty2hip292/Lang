@@ -1,0 +1,11 @@
+// this is sooo far from being implemented lmao
+
+print("enter three integers and your first and last name:")
+
+int a, b, c
+string first, last
+
+get(a, b, c, first, last)
+
+print("hello ", first, "!")
+print("you entered ", a, ", ", b, ", and ", c)

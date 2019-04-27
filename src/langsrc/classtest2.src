@@ -1,3 +1,6 @@
+// more finding types, but with strings and comments to make things weird
+// this file does not represent a valid program
+
 hide type ht1
 
 struct t
@@ -14,4 +17,4 @@ i like type t2
 this is a comment with the phrase \" struct bs1 \" in it
 
 "
-\"but this struct sshould " be visible "
+but this struct sshould " be visible "

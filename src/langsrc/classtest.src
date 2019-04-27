@@ -1,4 +1,6 @@
-import nothing
+// this is just to test finding the types in a file
+
+import nothing // does nothing
 
 hide type htype1 int
 class ctype2{
