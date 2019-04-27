@@ -46,6 +46,10 @@ public class Compiler {
 	}
 	
 	public static void main(String[] args) {
+		
+		/*
+		 * these are the files we are using to build our program
+		 */
 		for(String filename : args) {
 			try {
 				addToSourceFiles(filename);
@@ -56,6 +60,11 @@ public class Compiler {
 			}
 		}
 		
+		/*
+		 * look for all of the global types in the source code
+		 * 
+		 * also would be a good time to scan for function definitions
+		 */
 		for(Code c : program) {
 			TypeExtractor.extractTypes(c);
 		}
