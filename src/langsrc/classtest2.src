@@ -1,0 +1,17 @@
+hide type ht1
+
+struct t
+
+// i like type ttt
+i like type t2
+
+/*
+/*
+ // this is a type badT1 test
+// */
+
+"
+this is a comment with the phrase \" struct bs1 \" in it
+
+"
+\"but this struct sshould " be visible "

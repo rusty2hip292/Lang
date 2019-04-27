@@ -1,0 +1,8 @@
+import nothing
+
+hide type htype1 int
+class ctype2{
+}
+hide struct hsa {
+	int i;
+}
