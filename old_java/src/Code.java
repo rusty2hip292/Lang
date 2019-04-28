@@ -13,22 +13,14 @@ public class Code {
 	public final ArrayList<String> lines;
 	public final String code;
 	public final String nostringcode;
-	
-	/*
-	 * these are the types local to the file
-	 */
-	private HashMap<String, AbstractType> localtypes = new HashMap<String, AbstractType>();
+	public final Tokenizer tokenizer;
 	
 	public Code(ArrayList<String> lines) {
 		this.lines = lines;
 		this.code = stripComments(Compiler.toMassiveString(lines));
 		this.nostringcode = stripStrings(this.code);
+		this.tokenizer = new Tokenizer(lines);
 	}
-	
-	public void setLocalTypes(HashMap<String, AbstractType> locals) {
-		this.localtypes = locals;
-	}
-	
 	
 	// haven't tested these regex's much, but I think they work
 	

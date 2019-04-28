@@ -47,6 +47,11 @@ public class Compiler {
 	
 	public static void main(String[] args) {
 		
+		if(args.length == 0) {
+			System.err.println("No source files, no action performed");
+			return;
+		}
+		
 		/*
 		 * these are the files we are using to build our program
 		 */
@@ -66,7 +71,7 @@ public class Compiler {
 		 * also would be a good time to scan for function definitions
 		 */
 		for(Code c : program) {
-			TypeExtractor.extractTypes(c);
+			Parser.parse(c);
 		}
 	}
 	

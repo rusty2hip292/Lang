@@ -1,11 +1,15 @@
+package depreciated;
 import java.util.HashMap;
 import java.util.regex.Matcher;
+
+/*
+import Code;
 
 /*
  * will track the types currently defined
  * this has knowledge of both global types and types only available to the current file (local types)
  * global types contain local types, but local types are removed from global types when a new file is being parsed
- */
+ 
 public abstract class AbstractType {
 	
 	private static HashMap<String, AbstractType> types = new HashMap<String, AbstractType>();
@@ -26,7 +30,7 @@ public abstract class AbstractType {
 		/*for(int i = 0; i < m.groupCount(); i++) {
 			System.out.print("|" + m.group(i) + "|");
 		}
-		System.out.println();*/
+		System.out.println();
 		
 		boolean hidden = (m.group(1) != null);
 		String type = m.group(2);
@@ -44,7 +48,7 @@ public abstract class AbstractType {
 	
 	/*
 	 * forget local types
-	 */
+
 	public static void resetLocal(Code code) {
 		code.setLocalTypes(localtypes);
 		for(String s : localtypes.keySet()) {
@@ -66,7 +70,7 @@ public abstract class AbstractType {
  * and classes will be structs but with a bunch of extra information to handle methods, inheritance, polymorphism, etc.
  * 
  * we may make structs more like classes but without supporting inheritance or interfaces to offer more efficient code but without the runtime flexibility of classes
- */
+
 
 class Struct extends AbstractType {
 	
@@ -88,7 +92,6 @@ class Struct extends AbstractType {
 	
 	/*
 	 * build a capturing group to match any of the current structs, untested
-	 */
 	public static String makeRegexToFindType() {
 		StringBuffer regex = new StringBuffer();
 		regex.append("(");
@@ -126,7 +129,6 @@ class Type extends AbstractType {
 	
 	/*
 	 * build a capturing group to match any of the current typedefs, untested
-	 */
 	public static String makeRegexToFindType() {
 		StringBuffer regex = new StringBuffer();
 		regex.append("(");
@@ -164,7 +166,7 @@ class Class extends AbstractType {
 	
 	/*
 	 * build a capturing group to match any of the current classes, untested
-	 */
+	 * 
 	public static String makeRegexToFindType() {
 		StringBuffer regex = new StringBuffer();
 		regex.append("(");
@@ -181,3 +183,4 @@ class Class extends AbstractType {
 		return regex.toString();
 	}
 }
+*/
