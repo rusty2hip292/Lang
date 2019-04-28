@@ -24,7 +24,7 @@ type system:
 
 assignment:
 	the type system will have rules for interconversion of types
-	the type of a variable may be made more generic at run-time, and can be explicitly cast to a more specific (or more generic) type
+	in general, the type of a variable is not required; in this case, the type of a variable may be made more generic at run-time, and can be explicitly cast to a more specific (or more generic) type
 	for example:
 		var x = 12				// inferred to be an int
 		var b = x / 15			// integer division, b is an int
@@ -33,6 +33,8 @@ assignment:
 		var d = (int) x / 20	// x is temporarily cast to an int, d is an int
 		(int) x = c				// x is an integer once again
 	attempting to cast a type to another type for which no rule for conversion exists will result in a run time error
+	
+	a type may be given explicitly to a variable; explicitly given types will operate more efficiently than inferred types, but offer less flexibility
 
 control flow:
 	if {condition} then
@@ -53,16 +55,21 @@ functions:
 	functions will be called much like in Java or C:
 		myfunction(param1, param2)
 	
+	functions do not need to be defined above their first usage, nor even necessarily in the same file
+	
 	function definitions shall be as follows:
-		function myfunction(param1, param2)
+		myfunction(param1, param2) begin
 			// code
 			return {expression}
 		end
 	the return type of the function is inferred from examination of the types of each return statement
 	any type may be passed to a function, though a run-time error may occur if the parameter
 	is used in a way that is incompatible with its type
-	for greater type safety, the function type and its parameters may be explicitly cast:
-		function (int) typesafefunction((int) param1, (boolean) param2)
+	for greater type safety, the function type and its parameters may be explicitly given:
+		int typesafefunction(int param1, boolean param2) begin
 			// code
 			return 6
 		end
+
+linking to other languages:
+	we will support calling C functions natively
