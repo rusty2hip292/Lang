@@ -1,0 +1,6 @@
+
+string hello = "hello world!"
+print hello
+exit ()
+pause
+

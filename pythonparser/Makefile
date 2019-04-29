@@ -1,5 +1,5 @@
 
-all : compiler
+all : main
 
-compiler :
-	python3 compiler.py
+main :
+	@python3 main.py helloworld.code
