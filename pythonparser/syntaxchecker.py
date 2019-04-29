@@ -128,7 +128,7 @@ class Assignment(SyntaxElement):
 
 class FunctionDef(SyntaxElement):
 	def __init__(self):
-		super().__init__("funcdef", "function name tuple [\s\S]*?end")
+		super().__init__("funcdef", "function name tuple validcode end")
 
 	def handler(self):
 		for i in range(0, len(program)):
