@@ -4,12 +4,13 @@ import copy
 
 def init():
 	TypeDef()
-	Variable()
 	FunctionDef()
-	Assignment()
 	Tuple()
+	Variable()
+	Assignment()
 	FunctionCall()
 	Expression()	# almost anything can be treated as an expression, so this must happen last
+	ValidCode()		# except for this, which just starts collapsing things
 
 program = []
 syntaxElements = []
@@ -27,7 +28,10 @@ def checksyntax(tokens):
 			temp += tok.type + " "
 		print(temp)
 		syntactic = condense(temp)
-	#print(program)
+	if(len(program) != 1 or program[0].type != "validcode"):
+		print("invalid syntax")
+		exit(-1)
+	return program
 
 def condense(syntaxString):
 	b = True
@@ -128,9 +132,13 @@ class Assignment(SyntaxElement):
 
 class FunctionDef(SyntaxElement):
 	def __init__(self):
-		super().__init__("funcdef", "function name tuple validcode end")
+		super().__init__("funcdef", "function name tuple ([\s\S]*? )*?end")
 
 	def handler(self):
 		for i in range(0, len(program)):
 			if program[i].type == "name" and program[i].name == self.innerTokens[1].name:
 				program[i].type = "funcname"
+
+class ValidCode(SyntaxElement):
+	def __init__(self):
+		super().__init__("validcode", "(validcode( validcode)+|funcdef|expression|typedef)")
