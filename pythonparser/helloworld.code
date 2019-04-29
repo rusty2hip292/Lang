@@ -1,6 +1,12 @@
 
+type string
+
 string hello = "hello world!"
+string test = "test"
 print hello
-exit ()
+exit (56, test, 69.0, exit(exit()))
 pause
 
+function exit()
+string local = 10
+end

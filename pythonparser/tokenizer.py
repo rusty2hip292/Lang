@@ -9,10 +9,18 @@ def init():
 	String()
 	OpenParenthesis()
 	CloseParenthesis()
+	CommaToken()
+	AssignmentOperator() # cannot move this below GenericOperator
 	GenericOperator()
+	FloatLiteral()
+	IntLiteral()
+	TypeToken()
+	End()
+	FunctionToken()
+
+	## name is really any unrecognized word, so needs to come after the rest of the syntax
 	Name()
 	Whitespace()
-	TokenType()
 
 tokens = []
 def printTokens():
@@ -106,9 +114,23 @@ class CloseParenthesis(TokenType):
 			return -1
 
 class OpenParen(Token):
-	pass
+	type = "("
 class CloseParen(Token):
-	pass
+	type = ")"
+
+
+class CommaToken(TokenType):
+	regx = ","
+	reg = regex.compile(regx)
+
+	def match(self, token):
+		if self.reg.fullmatch(token) != None:
+			Comma(",")
+			return 0
+		else:
+			return -1
+class Comma(Token):
+	type = "comma"
 
 class Name(TokenType):
 	regx = "([a-zA-Z_]\\w*)\\W"
@@ -117,16 +139,26 @@ class Name(TokenType):
 	def match(self, token):
 		m = self.reg.fullmatch(token)
 		if m != None:
-			VarOrFuncName(m.group(1))
+			VarFuncOrTypeName(m.group(1))
 			return 1
 		else:
 			return -1
 
-class VarOrFuncName(Token):
-	pass
+class VarFuncOrTypeName(Token):
+	type = "name"
 
 class Comment(TokenType):
 	regx = "(//.*\\n|/\\*[\\s\\S]*?\\*/)"
+	reg = regex.compile(regx)
+
+	def match(self, token):
+		if self.reg.fullmatch(token) != None:
+			return 0
+		else:
+			return -1
+
+class String(TokenType):
+	regx = "\"(([\\s\\S]*(\\\")*)*)\""
 	reg = regex.compile(regx)
 
 	def match(self, token):
@@ -137,18 +169,20 @@ class Comment(TokenType):
 		else:
 			return -1
 
-class String(TokenType):
-	regx = "\"(([\\s\\S]*(\\\")*)*)\""
+class ConstString(Token):
+	type = "string"
+
+class AssignmentOperator(TokenType):
+	regx = "=[^=]"
 	reg = regex.compile(regx)
 
 	def match(self, token):
-		if self.reg.fullmatch(token) != None:
-			return 0
+		m = self.reg.fullmatch(token)
+		if m != None:
+			Assign("=")
+			return 1
 		else:
 			return -1
-
-class ConstString(Token):
-	pass
 
 class GenericOperator(TokenType):
 	regx = "((=|\\+|\\-|\\*|/|\\^|%|!)+)[^=!+-/*%^]"
@@ -163,7 +197,9 @@ class GenericOperator(TokenType):
 			return -1
 
 class Operator(Token):
-	pass
+	type = "operator"
+class Assign(Token):
+	type = "assigned"
 
 class End(TokenType):
 	regx = "end\\s"
@@ -177,4 +213,60 @@ class End(TokenType):
 			return -1
 
 class EndToken(Token):
-	pass
+	type = "end"
+
+class FloatLiteral(TokenType):
+	regx = "(\d+\\.\d+)\D"
+	reg = regex.compile(regx)
+
+	def match(self, token):
+		m = self.reg.fullmatch(token)
+		if m != None:
+			Float(m.group(1))
+			return 1
+		else:
+			return -1
+class Float(Token):
+	type = "float"
+
+class IntLiteral(TokenType):
+	regx = "(\\d+)[^\\d.]"
+	reg = regex.compile(regx)
+
+	def match(self, token):
+		m = self.reg.fullmatch(token)
+		if m != None:
+			Int(m.group(1))
+			return 1
+		else:
+			return -1
+class Int(Token):
+	type = "int"
+
+class TypeToken(TokenType):
+	regx = "type\\s"
+	reg = regex.compile(regx)
+
+	def match(self, token):
+		m = self.reg.fullmatch(token)
+		if m != None:
+			Type("type")
+			return 0
+		else:
+			return -1
+class Type(Token):
+	type = "type"
+
+class FunctionToken(TokenType):
+	regx = "function\\s"
+	reg = regex.compile(regx)
+
+	def match(self, token):
+		m = self.reg.fullmatch(token)
+		if m != None:
+			Function("function")
+			return 0
+		else:
+			return -1
+class Function(Token):
+	type = "function"
