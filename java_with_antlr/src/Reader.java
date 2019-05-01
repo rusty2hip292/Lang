@@ -2,6 +2,7 @@
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -51,6 +52,9 @@ public class Reader {
 		}
 	}
 	public static void main(String[] args) {
+		System.out.println(read(args).get(0));
+	}
+	public static List<String> read(String[] args) {
 		
 		if(args.length < 1) {
 			panic("No source files, fatal error");
@@ -66,13 +70,12 @@ public class Reader {
 		for(int i = 1; i < args.length; i++) {
 			addSource(args[i], sourceFiles, false);
 		}
-		StringBuffer sb = new StringBuffer();
-		sb.append(read(main));
-		sb.append("\nexit(0)\n\n"); // end of main program, do not run into the other source files
+		List<String> code = new LinkedList<String>();
+		code.add(read(main));
 		for(File f : sourceFiles) {
-			sb.append(read(f));
+			code.add(read(f));
 		}
-		System.out.println(sb.toString()); // pipe to antlr
+		return code;
 	}
 	
 	public static String read(File f) {

@@ -1,10 +1,15 @@
 JAVAFILES=$(wildcard *.java)
 CLASSFILES=$(subst .java,.class,$(JAVAFILES))
 
-all : run
+all : test
 
-run : parser compile
-	java Reader main.src lang | java -cp ".;./antlr-4.7.2-complete.jar" org.antlr.v4.gui.TestRig Lang r -tree
+ready : parser compile
+
+test : ready
+	java Reader main.src lang | java -cp ".;./antlr-4.7.2-complete.jar" org.antlr.v4.gui.TestRig Lang program -gui
+
+run : ready
+	java Compiler
 
 compile : $(CLASSFILES)
 
@@ -12,7 +17,7 @@ compile : $(CLASSFILES)
 	javac -cp ".;./antlr-4.7.2-complete.jar" $(JAVAFILES)
 
 parser : Lang.g4
-	-java -cp ".;./antlr-4.7.2-complete.jar" org.antlr.v4.Tool Lang.g4
+	java -cp ".;./antlr-4.7.2-complete.jar" org.antlr.v4.Tool -visitor Lang.g4
 
 clean :
-	rm *.class
+	rm *.class Lang*.java *.tokens *.interp

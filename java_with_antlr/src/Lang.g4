@@ -1,6 +1,11 @@
 grammar Lang;
 
-TOKEN : [a-zA-Z0-9]+ ;
-WHITESPACE : [ \t\r\n]+;
+import Tokens;
 
-program : (TOKEN WHITEPACE?)+;
+program : (valid)+ EOF;
+
+valid : expression;
+
+expression : IDENTIFIER | expression operator expression | LPAREN expression RPAREN;
+
+operator : DIV|MULT|SUB|PLUS;

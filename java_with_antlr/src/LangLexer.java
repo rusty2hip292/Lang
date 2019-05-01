@@ -16,7 +16,8 @@ public class LangLexer extends Lexer {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		TOKEN=1, WHITESPACE=2;
+		MULT=1, DIV=2, SUB=3, PLUS=4, LPAREN=5, RPAREN=6, IDENTIFIER=7, NEWLINE=8, 
+		WHITESPACE=9;
 	public static String[] channelNames = {
 		"DEFAULT_TOKEN_CHANNEL", "HIDDEN"
 	};
@@ -27,19 +28,22 @@ public class LangLexer extends Lexer {
 
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"TOKEN", "WHITESPACE"
+			"MULT", "DIV", "SUB", "PLUS", "LPAREN", "RPAREN", "IDENTIFIER", "NEWLINE", 
+			"WHITESPACE"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
+			null, "'*'", "'/'", "'-'", "'+'", "'('", "')'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
-			null, "TOKEN", "WHITESPACE"
+			null, "MULT", "DIV", "SUB", "PLUS", "LPAREN", "RPAREN", "IDENTIFIER", 
+			"NEWLINE", "WHITESPACE"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -101,12 +105,22 @@ public class LangLexer extends Lexer {
 	public ATN getATN() { return _ATN; }
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\2\4\21\b\1\4\2\t\2"+
-		"\4\3\t\3\3\2\6\2\t\n\2\r\2\16\2\n\3\3\6\3\16\n\3\r\3\16\3\17\2\2\4\3\3"+
-		"\5\4\3\2\4\5\2\62;C\\c|\5\2\13\f\17\17\"\"\2\22\2\3\3\2\2\2\2\5\3\2\2"+
-		"\2\3\b\3\2\2\2\5\r\3\2\2\2\7\t\t\2\2\2\b\7\3\2\2\2\t\n\3\2\2\2\n\b\3\2"+
-		"\2\2\n\13\3\2\2\2\13\4\3\2\2\2\f\16\t\3\2\2\r\f\3\2\2\2\16\17\3\2\2\2"+
-		"\17\r\3\2\2\2\17\20\3\2\2\2\20\6\3\2\2\2\5\2\n\17\2";
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\2\13\66\b\1\4\2\t\2"+
+		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\3\2\3"+
+		"\2\3\3\3\3\3\4\3\4\3\5\3\5\3\6\3\6\3\7\3\7\3\b\3\b\7\b$\n\b\f\b\16\b\'"+
+		"\13\b\3\t\6\t*\n\t\r\t\16\t+\3\t\3\t\3\n\6\n\61\n\n\r\n\16\n\62\3\n\3"+
+		"\n\2\2\13\3\3\5\4\7\5\t\6\13\7\r\b\17\t\21\n\23\13\3\2\6\5\2C\\aac|\6"+
+		"\2\62;C\\aac|\3\2\f\f\5\2\13\13\17\17\"\"\28\2\3\3\2\2\2\2\5\3\2\2\2\2"+
+		"\7\3\2\2\2\2\t\3\2\2\2\2\13\3\2\2\2\2\r\3\2\2\2\2\17\3\2\2\2\2\21\3\2"+
+		"\2\2\2\23\3\2\2\2\3\25\3\2\2\2\5\27\3\2\2\2\7\31\3\2\2\2\t\33\3\2\2\2"+
+		"\13\35\3\2\2\2\r\37\3\2\2\2\17!\3\2\2\2\21)\3\2\2\2\23\60\3\2\2\2\25\26"+
+		"\7,\2\2\26\4\3\2\2\2\27\30\7\61\2\2\30\6\3\2\2\2\31\32\7/\2\2\32\b\3\2"+
+		"\2\2\33\34\7-\2\2\34\n\3\2\2\2\35\36\7*\2\2\36\f\3\2\2\2\37 \7+\2\2 \16"+
+		"\3\2\2\2!%\t\2\2\2\"$\t\3\2\2#\"\3\2\2\2$\'\3\2\2\2%#\3\2\2\2%&\3\2\2"+
+		"\2&\20\3\2\2\2\'%\3\2\2\2(*\t\4\2\2)(\3\2\2\2*+\3\2\2\2+)\3\2\2\2+,\3"+
+		"\2\2\2,-\3\2\2\2-.\b\t\2\2.\22\3\2\2\2/\61\t\5\2\2\60/\3\2\2\2\61\62\3"+
+		"\2\2\2\62\60\3\2\2\2\62\63\3\2\2\2\63\64\3\2\2\2\64\65\b\n\2\2\65\24\3"+
+		"\2\2\2\6\2%+\62\3\b\2\2";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
