@@ -1,23 +1,35 @@
+package compiler;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import tokenizer.AbstractSyntaxTree;
+import tokenizer.Token;
+import tokenizer.Tokenizer;
+
 public class Compiler {
 	
 	public static final String[] extensions = {".src"};
+	public static boolean quiet = false;
 	
-	public static void panic(String s) {
+	public static void panic(String fmt, Object... args) {
 		Exception e;
 		try {
 			throw new Exception();
 		}catch(Exception temp) {
 			e = temp;
 		}
-		System.err.println(String.format("panic: %s", s));
+		System.err.println(String.format(String.format("panic: %s", fmt), args));
 		e.printStackTrace();
 		System.exit(-1);
 	}
+	public static void debug(String fmt, Object... args) {
+		if(!quiet) {
+			System.out.printf(fmt, args);
+		}
+	}
+	
 	public static boolean hasCorrectExtension(String s) {
 		for(String ext : extensions) {
 			if(s.endsWith(ext)) {
@@ -35,7 +47,7 @@ public class Compiler {
 				}
 			}else {
 				if(hasCorrectExtension(filename)) {
-					System.out.println("fetching " + filename);
+					Compiler.debug("fetching " + filename + "\n");
 					files.add(f);
 				}
 			}

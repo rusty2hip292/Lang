@@ -1,0 +1,9 @@
+header
+    int printf(const char *fmt, ...);
+end
+
+print(str)
+    inline
+        printf(str);
+    end
+end

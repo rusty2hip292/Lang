@@ -1,5 +1,8 @@
-JAVAFILES=$(sort $(wildcard *.java))
+JAVAFILES=$(shell find ./ -type f -name '*.java')
 CLASSFILES=$(subst .java,.class,$(JAVAFILES))
+
+temp :
+	echo $(JAVAFILES)
 
 all : Compiler Makefile
 

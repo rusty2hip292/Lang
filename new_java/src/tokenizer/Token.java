@@ -1,7 +1,10 @@
+package tokenizer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import compiler.Compiler;
 
 public abstract class Token {
 	
@@ -10,6 +13,8 @@ public abstract class Token {
 		Strip.init(types);
 		Keyword.init(types);
 		Literal.init(types);
+		Operator.init(types);
+		SyntacticToken.init(types);
 		types.add(new Name());
 	}
 	
@@ -21,8 +26,8 @@ public abstract class Token {
 		p = null;
 	}
 	public Token(String regex, String mustBeNext) {
-		this.regex = String.format("^(%s)(%s[\\s\\S]*?)$", regex, mustBeNext);
-		System.out.println(String.format("%s = %s", this.getClass(), this.regex));
+		this.regex = String.format("^(%s)((%s[\\s\\S]*?)?)$", regex, mustBeNext);
+		Compiler.debug("%s = %s\n", this.getClass(), this.regex);
 		p = Pattern.compile(this.regex);
 	}
 	public Token(String regex) {
@@ -54,7 +59,8 @@ public abstract class Token {
 				return rest;
 			}
 		}
-		Compiler.panic(String.format("%s", code.split(" ")[0]));
+		System.out.println(code);
+		Compiler.panic(String.format("%s", code.split("\\s")[0]));
 		return null;
 	}
 	
