@@ -1,10 +1,8 @@
-package tokenizer;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import compiler.Compiler;
 
 public abstract class Token {
 	
@@ -67,11 +65,4 @@ public abstract class Token {
 	public String toString() {
 		return String.format("%s: %s|", this.getClass(), this.from);
 	}
-}
-
-class Name extends Token {
-	public Name() {
-		super("[a-zA-Z_]\\w*");
-	}
-	public Name(String name) { }
 }

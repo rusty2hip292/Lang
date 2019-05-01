@@ -1,4 +1,4 @@
-package tokenizer;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -6,8 +6,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
-
-import compiler.Compiler;
 
 public class Tokenizer implements Iterator<Token>, Iterable<Token> {
 
@@ -61,5 +59,24 @@ public class Tokenizer implements Iterator<Token>, Iterable<Token> {
 	
 	public Iterator<Token> iterator() {
 		return this.tokenized.iterator();
+	}
+	
+	public void reset() {
+		index = 0;
+	}
+	
+	public List<Token> tokenList() {
+		return this.tokenized;
+	}
+	
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		for(Token t : this) {
+			if(t instanceof Whitespace) {
+				continue;
+			}
+			sb.append(String.format("%s:%s|", t.getClass().getName(), t.from));
+		}
+		return sb.toString();
 	}
 }

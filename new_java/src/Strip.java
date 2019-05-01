@@ -1,4 +1,4 @@
-package tokenizer;
+
 import java.util.List;
 
 public abstract class Strip extends Token {

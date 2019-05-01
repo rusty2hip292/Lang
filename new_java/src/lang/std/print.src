@@ -1,9 +1,10 @@
+
 header
-    int printf(const char *fmt, ...);
+int printf(const char *fmt, ...);
 end
 
-print(str)
-    inline
-        printf(str);
-    end
+function print(string str)
+  inline
+    printf(str.charptr);
+  end
 end

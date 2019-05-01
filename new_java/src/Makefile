@@ -1,4 +1,4 @@
-JAVAFILES=$(shell find ./ -type f -name '*.java')
+JAVAFILES=$(wildcard *.java)
 CLASSFILES=$(subst .java,.class,$(JAVAFILES))
 
 all : Compiler Makefile

@@ -1,12 +1,8 @@
-package compiler;
+
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import tokenizer.AbstractSyntaxTree;
-import tokenizer.Token;
-import tokenizer.Tokenizer;
 
 public class Compiler {
 	
@@ -71,10 +67,12 @@ public class Compiler {
 		for(int i = 1; i < args.length; i++) {
 			addSource(args[i], sourceFiles, false);
 		}
-		ArrayList<AbstractSyntaxTree> externalSources = new ArrayList<AbstractSyntaxTree>();
+		Parser parser = Parser.parser();
 		for(String code : Tokenizer.toStrings(sourceFiles)) {
-			externalSources.add(new AbstractSyntaxTree(new Tokenizer(code)));
+			parser.parse(new Tokenizer(code));
 		}
-		new AbstractSyntaxTree(new Tokenizer(Tokenizer.toString(main)));
+		parser.parse(new Tokenizer(Tokenizer.toString(main)));
+		parser.parse();
+		parser.dump();
 	}
 }
