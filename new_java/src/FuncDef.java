@@ -6,6 +6,9 @@ public class FuncDef extends Scope {
 	private static Parser parser = Parser.parser();
 	
 	private List<Token> inside = new LinkedList<Token>();
+	public List<Token> inside() {
+		return inside;
+	}
 	public Token addToken(Token t) {
 		inside.add(t);
 		return t;

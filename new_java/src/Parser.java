@@ -1,18 +1,21 @@
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 public class Parser {
 	
 	public void dump() {
 		System.out.println(header.toString());
-		for(Type st : types.values()) {
+		for(Type st : getScope().types()) {
 			st.dump();
 		}
-		for(FuncDef f : funcs.values()) {
+		for(FuncDef f : getScope().funcs()) {
 			f.dump();
 		}
+		System.out.println(getScope().vars());
 	}
 	
 	private StringBuffer header = new StringBuffer();
@@ -35,11 +38,20 @@ public class Parser {
 		for(Tokenizer t : toParse) {
 			extractTypesAndFunctions(t);
 		}
-		
-		// more here
+		for(Tokenizer t : toParse) {
+			List<Token> tokens = t.tokenList();
+			handle(tokens);
+		}
+		handleScopes();
+		// more here?
 		
 		Tokenizer main = toParse.get(toParse.size() - 1);
 		System.out.println(main.tokenList());
+	}
+	
+	private void handle(List<Token> tokens) {
+		Compiler.debug("handling %s\n", tokens);
+		while(Variable.makeVariables(tokens));
 	}
 	
 	public String toString() {
@@ -88,27 +100,38 @@ public class Parser {
 		}
 	}
 	
-	private HashMap<String, Type> types = new HashMap<String, Type>();
+	public void addFunc(String name, FuncDef func) {
+		getScope().addFunc(name, func);
+	}
+	public void addVar(String name, Variable var) {
+		getScope().addVar(name, var);
+	}
 	public void addType(String name, Type type) {
-		if(types.containsKey(name)) {
-			throw new IllegalArgumentException("Type " + name + " already defined");
-		}
-		if(funcs.containsKey(name)) {
-			throw new IllegalArgumentException("Currently do not support variables and functions with the same name");
-		}
-		types.put(name, type);
+		getScope().addType(name, type);
 	}
 	public Type getType(String name) {
-		return types.get(name);
+		return getScope().getType(name);
 	}
-	private HashMap<String, FuncDef> funcs = new HashMap<String, FuncDef>();
-	public void addFunc(String name, FuncDef func) {
-		if(funcs.containsKey(name)) {
-			throw new IllegalArgumentException("Function " + name + " already defined");
+	public Variable getVar(String name) {
+		return getScope().getVar(name);
+	}
+	
+	private Scope current = null;
+	private Stack<Scope> scopes = new Stack<Scope>();
+	public Scope getScope() {
+		return current;
+	}
+	public void addScope(Scope s) {
+		if(this.current == null) {
+			this.current = new GlobalScope();
 		}
-		if(types.containsKey(name)) {
-			throw new IllegalArgumentException("Currently do not support variables and functions with the same name");
+		s.addAll(this.getScope());
+		this.scopes.push(s);
+	}
+	private void handleScopes() {
+		while(scopes.size() > 0) {
+			current = scopes.pop();
+			handle(current.inside());
 		}
-		funcs.put(name, func);
 	}
 }

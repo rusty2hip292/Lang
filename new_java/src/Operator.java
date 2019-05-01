@@ -12,6 +12,7 @@ public abstract class Operator extends Token {
 				new Mod(),
 				new Exponent(),
 				new Dot(),
+				new Equals(),
 		};
 		for(Token t : tokens) {
 			types.add(t);

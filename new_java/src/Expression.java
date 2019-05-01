@@ -1,8 +1,5 @@
 import java.util.List;
 
-public class Expression {
+public interface Expression {
 
-	public Expression(List<Token> tokens, int index) {
-		
-	}
 }
