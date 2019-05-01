@@ -21,6 +21,10 @@ public class FuncDef extends Scope {
 		}
 	}
 	
+	public void determineSignature() {
+		
+	}
+	
 	public void dump() {
 		System.out.println(String.format("function %s: %s", name, inside));
 	}

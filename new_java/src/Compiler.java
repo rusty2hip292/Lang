@@ -74,5 +74,7 @@ public class Compiler {
 		parser.parse(new Tokenizer(Tokenizer.toString(main)));
 		parser.parse();
 		parser.dump();
+		System.out.println();
+		System.out.println(parser);
 	}
 }

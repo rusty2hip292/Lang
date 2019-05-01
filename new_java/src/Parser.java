@@ -35,6 +35,15 @@ public class Parser {
 		for(Tokenizer t : toParse) {
 			extractTypesAndFunctions(t);
 		}
+		
+		// more here
+		
+		Tokenizer main = toParse.get(toParse.size() - 1);
+		System.out.println(main.tokenList());
+	}
+	
+	public String toString() {
+		return this.header.toString();
 	}
 	
 	private void extractTypesAndFunctions(Tokenizer t) {
@@ -84,6 +93,9 @@ public class Parser {
 		if(types.containsKey(name)) {
 			throw new IllegalArgumentException("Type " + name + " already defined");
 		}
+		if(funcs.containsKey(name)) {
+			throw new IllegalArgumentException("Currently do not support variables and functions with the same name");
+		}
 		types.put(name, type);
 	}
 	public Type getType(String name) {
@@ -91,8 +103,11 @@ public class Parser {
 	}
 	private HashMap<String, FuncDef> funcs = new HashMap<String, FuncDef>();
 	public void addFunc(String name, FuncDef func) {
-		if(types.containsKey(name)) {
+		if(funcs.containsKey(name)) {
 			throw new IllegalArgumentException("Function " + name + " already defined");
+		}
+		if(types.containsKey(name)) {
+			throw new IllegalArgumentException("Currently do not support variables and functions with the same name");
 		}
 		funcs.put(name, func);
 	}
