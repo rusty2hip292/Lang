@@ -1,7 +1,5 @@
 package tokenizer;
 
-import tokenizer.*;
-
 public class AbstractSyntaxTree {
 
 	public AbstractSyntaxTree(Tokenizer t) {
