@@ -1,7 +1,7 @@
 JAVAFILES=$(wildcard *.java)
 CLASSFILES=$(subst .java,.class,$(JAVAFILES))
 
-all : test
+all : ready
 
 ready : parser compile
 

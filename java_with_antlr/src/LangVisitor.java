@@ -22,6 +22,18 @@ public interface LangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitValid(LangParser.ValidContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link LangParser#comment}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitComment(LangParser.CommentContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LangParser#funcdef}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFuncdef(LangParser.FuncdefContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link LangParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

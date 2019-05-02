@@ -1,1 +1,4 @@
-a10 + a7 + a2 * a3 + (a4 * a9)
+
+func myfunc()
+//a5+a5
+end
