@@ -1,4 +1,10 @@
 
 func myfunc()
-//a5+a5
+	func myfunc2()
+		/*
+			// rgfd
+		/*
+			comment
+		*/
+	end
 end
