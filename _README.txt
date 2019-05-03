@@ -8,6 +8,12 @@ it will be more verbose than most modern code, but this will enhance readability
 
 so far, our syntax is as such (though none of this is implemented):
 
+printing to console:
+	show expression		// prints the value of expression to the console
+	say hello world     // treats the rest of the line as a string and invokes show on that string
+						// may add the ability to inline variables into the show call, such as
+						// "show hello, (name)" to print "hello, " followed by the value of the variable name
+
 operators:
 	we will support the standard binary operators +, -, \*, and /, along with ^ for exponentiation
 
@@ -33,14 +39,14 @@ assignment:
 control flow:
 	if {condition} then
 		// code
-	[else
-		// code]
+	[else]
+		// code
 	end
-	-------------------------------------------------
+
 	do
 		// code
 	for x from {startnum} to {endnum} step {stepsize}
-	-------------------------------------------------
+	
 	do
 		// code
 	x times
@@ -52,13 +58,18 @@ functions:
 	functions do not need to be defined above their first usage, nor even necessarily in the same file
 	
 	function definitions shall be as follows:
-		function myfunction(param1, param2)
+		myfunction(param1, param2) begin
 			// code
-			[return {expression}]
+			return {expression}
 		end
-	the return type of the function is inferred from examination of the types of each return statement; if no return statement is present, the function returns 0
-	the types of each parameter are infered by the types of the variables passed to them (as seen at compile time) and by the methods/fields accessed from those parameters
-		the most specific type or interface that contains all of the fields and methods used in the function, as well as being compatible with the inferred types of the arguments passed to the function, is the inferred type of the parameter
+	the return type of the function is inferred from examination of the types of each return statement
+	any type may be passed to a function, though a run-time error may occur if the parameter
+	is used in a way that is incompatible with its type
+	for greater type safety, the function type and its parameters may be explicitly given:
+		int typesafefunction(int param1, boolean param2) begin
+			// code
+			return 6
+		end
 
 linking to other languages:
 	we will support calling C functions natively
