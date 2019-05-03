@@ -1,3 +1,4 @@
+package compiler;
 
 import java.io.File;
 import java.nio.file.Paths;
