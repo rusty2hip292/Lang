@@ -117,6 +117,16 @@ public interface LangListener extends ParseTreeListener {
 	 */
 	void exitBool(LangParser.BoolContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link LangParser#block}.
+	 * @param ctx the parse tree
+	 */
+	void enterBlock(LangParser.BlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LangParser#block}.
+	 * @param ctx the parse tree
+	 */
+	void exitBlock(LangParser.BlockContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link LangParser#funcdef}.
 	 * @param ctx the parse tree
 	 */
@@ -217,15 +227,55 @@ public interface LangListener extends ParseTreeListener {
 	 */
 	void exitCondition(LangParser.ConditionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link LangParser#arithmaticoperator}.
+	 * Enter a parse tree produced by {@link LangParser#functioncall}.
 	 * @param ctx the parse tree
 	 */
-	void enterArithmaticoperator(LangParser.ArithmaticoperatorContext ctx);
+	void enterFunctioncall(LangParser.FunctioncallContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link LangParser#arithmaticoperator}.
+	 * Exit a parse tree produced by {@link LangParser#functioncall}.
 	 * @param ctx the parse tree
 	 */
-	void exitArithmaticoperator(LangParser.ArithmaticoperatorContext ctx);
+	void exitFunctioncall(LangParser.FunctioncallContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LangParser#p0arithmatic}.
+	 * @param ctx the parse tree
+	 */
+	void enterP0arithmatic(LangParser.P0arithmaticContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LangParser#p0arithmatic}.
+	 * @param ctx the parse tree
+	 */
+	void exitP0arithmatic(LangParser.P0arithmaticContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LangParser#p1arithmatic}.
+	 * @param ctx the parse tree
+	 */
+	void enterP1arithmatic(LangParser.P1arithmaticContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LangParser#p1arithmatic}.
+	 * @param ctx the parse tree
+	 */
+	void exitP1arithmatic(LangParser.P1arithmaticContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LangParser#p2arithmatic}.
+	 * @param ctx the parse tree
+	 */
+	void enterP2arithmatic(LangParser.P2arithmaticContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LangParser#p2arithmatic}.
+	 * @param ctx the parse tree
+	 */
+	void exitP2arithmatic(LangParser.P2arithmaticContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LangParser#p3arithmatic}.
+	 * @param ctx the parse tree
+	 */
+	void enterP3arithmatic(LangParser.P3arithmaticContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LangParser#p3arithmatic}.
+	 * @param ctx the parse tree
+	 */
+	void exitP3arithmatic(LangParser.P3arithmaticContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link LangParser#comparisonoperator}.
 	 * @param ctx the parse tree
@@ -246,4 +296,24 @@ public interface LangListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBooleanoperator(LangParser.BooleanoperatorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LangParser#and}.
+	 * @param ctx the parse tree
+	 */
+	void enterAnd(LangParser.AndContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LangParser#and}.
+	 * @param ctx the parse tree
+	 */
+	void exitAnd(LangParser.AndContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LangParser#or}.
+	 * @param ctx the parse tree
+	 */
+	void enterOr(LangParser.OrContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LangParser#or}.
+	 * @param ctx the parse tree
+	 */
+	void exitOr(LangParser.OrContext ctx);
 }

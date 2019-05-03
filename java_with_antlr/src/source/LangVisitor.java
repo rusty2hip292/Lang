@@ -76,6 +76,12 @@ public interface LangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitBool(LangParser.BoolContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link LangParser#block}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBlock(LangParser.BlockContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link LangParser#funcdef}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -136,11 +142,35 @@ public interface LangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCondition(LangParser.ConditionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link LangParser#arithmaticoperator}.
+	 * Visit a parse tree produced by {@link LangParser#functioncall}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitArithmaticoperator(LangParser.ArithmaticoperatorContext ctx);
+	T visitFunctioncall(LangParser.FunctioncallContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LangParser#p0arithmatic}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitP0arithmatic(LangParser.P0arithmaticContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LangParser#p1arithmatic}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitP1arithmatic(LangParser.P1arithmaticContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LangParser#p2arithmatic}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitP2arithmatic(LangParser.P2arithmaticContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LangParser#p3arithmatic}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitP3arithmatic(LangParser.P3arithmaticContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link LangParser#comparisonoperator}.
 	 * @param ctx the parse tree
@@ -153,4 +183,16 @@ public interface LangVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitBooleanoperator(LangParser.BooleanoperatorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LangParser#and}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAnd(LangParser.AndContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LangParser#or}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOr(LangParser.OrContext ctx);
 }

@@ -5,7 +5,7 @@ import Tokens;
 // structural
 program : valid EOF;
 valid : parsable*;
-parsable : funcdef|comment|inline|debugging;
+parsable : comment|block|debugging;
 debugging : evaluateable;
 
 // comments, duh
@@ -20,6 +20,7 @@ real : NUMERIC DOT NUMERIC;
 bool : TRUE | FALSE;
 
 // blocks
+block : funcdef | init | inline;
 funcdef : FUNCTION IDENTIFIER paramlist valid END;
 init : INIT valid END;
 inline : INLINE ~(END)*? END;
@@ -32,10 +33,16 @@ evaluateable : expression | condition | assign;
 rvalue : expression | condition;
 lvalue : IDENTIFIER;
 assign : lvalue ASSIGN rvalue;
-expression : IDENTIFIER | expression arithmaticoperator expression | LPAREN expression RPAREN | literal;
+expression : IDENTIFIER | p3arithmatic | LPAREN expression RPAREN | literal | functioncall;
 condition : expression comparisonoperator expression | condition booleanoperator condition | bool;
+functioncall : IDENTIFIER paramlist;
 
 // handy for combining expressions
-arithmaticoperator : DIV|MULT|SUB|PLUS|CARAT;
+p0arithmatic : IDENTIFIER | literal | functioncall | LPAREN expression RPAREN;
+p1arithmatic : p0arithmatic (CARAT p0arithmatic)*;
+p2arithmatic : p1arithmatic ((DIV|MULT) p1arithmatic)*;
+p3arithmatic : p2arithmatic ((SUB|PLUS) p2arithmatic)*;
 comparisonoperator : LT|GT|EQ|LTEQ|GTEQ;
-booleanoperator : AND|OR;
+booleanoperator : and|or;
+and : AND;
+or : OR;
