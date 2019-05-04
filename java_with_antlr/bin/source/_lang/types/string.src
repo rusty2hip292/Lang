@@ -1,0 +1,7 @@
+
+primative char
+
+type Char
+type String
+
+char* String.charptr

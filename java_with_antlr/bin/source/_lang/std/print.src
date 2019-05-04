@@ -1,0 +1,10 @@
+
+header
+int printf(const char *fmt, ...);
+end
+
+function print(String str)
+  inline
+    printf(str.charptr);
+  end
+end

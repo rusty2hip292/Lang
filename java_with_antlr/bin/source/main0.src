@@ -1,0 +1,21 @@
+
+func myfunc()
+
+	x = 10 +
+	12.6 -
+	0x12 *
+	0b12 <= 12 and true
+
+	func myfunc2()
+	" "
+	" \" "
+		/*
+			// rgfd
+		/*
+			comment
+		*/
+	end
+	inline
+			srgdfhgnh
+	end
+end
