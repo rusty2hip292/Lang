@@ -5,6 +5,7 @@ test : parser
 	java -cp ".;./antlr-4.7.2-complete.jar" org.antlr.v4.Tool -visitor Lang.g4
 	javac -cp ".;./antlr-4.7.2-complete.jar" ./*.java
 	cat temp.txt | java -cp ".;./antlr-4.7.2-complete.jar;./bin" org.antlr.v4.gui.TestRig Lang program -gui
+	make clean
 
 run :
 	java -cp ".;./antlr-4.7.2-complete.jar;./bin" compiler.Compiler main.src lang
