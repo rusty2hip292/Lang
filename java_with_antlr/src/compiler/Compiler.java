@@ -1,11 +1,60 @@
 package compiler;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.antlr.v4.runtime.*;
+import listeners.*;
+
 import antlr.*;
 
 public class Compiler {
-
+	
+	public static List<LangListener> listeners = new LinkedList<LangListener>();
+	static {
+		listeners.add(new TypeExtractor());
+	}
+	
+	private static LangParser makeParser(String filename) throws Exception {
+		return new LangParser(new CommonTokenStream(new LangLexer(new ANTLRFileStream(filename))));
+	}
+	private static void handle(List<File> files) {
+		for(LangListener listener : listeners) {
+			for(File file : files) {
+				try {
+					handle(file.getAbsolutePath(), listener);
+				}catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	private static String currentFileName = "";
+	public static String currentFile() {
+		return currentFileName;
+	}
+	private static void handle(String filename, LangListener listener) throws Exception {
+		currentFileName = filename;
+		LangParser parser = makeParser(filename);
+		parser.addParseListener(listener);
+		parser.program().enterRule(null);
+	}
+	
+	private static List<String> handleFlags(List<String> args) {
+		return args;
+	}
+	
 	public static void main(String[] args) {
 	
-		System.out.println("test");
+		List<String> list = new LinkedList<String>();
+		for(String s : args) {
+			list.add(s);
+		}
+		args = handleFlags(list).toArray(args);
+		List<File> files = Reader.resolve(args);
+		handle(files);
 	}
 }

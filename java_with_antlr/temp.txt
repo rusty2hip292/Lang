@@ -18,8 +18,8 @@ func myfunc()
 	x3 = 5 + 7 - (6 + 7)
 
 	func myfunc2()
-	" "
-	" \" " // comment1
+	x=" "
+	y=" \" " // comment1
 		/*
 			// rgfd
 		/*
@@ -30,6 +30,8 @@ func myfunc()
 			srgdfhgnh
 	end
 end
+
+type MyType
 
 func func2()
 end

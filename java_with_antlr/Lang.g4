@@ -5,7 +5,7 @@ import Tokens;
 // structural
 program : valid EOF;
 valid : parsable*;
-parsable : comment|block|debugging;
+parsable : comment|block|line;
 debugging : evaluateable;
 
 // comments, duh
@@ -21,24 +21,30 @@ bool : TRUE | FALSE;
 
 // blocks
 block : funcdef | init | inline;
-funcdef : FUNCTION IDENTIFIER paramlist valid END;
+funcdef : FUNCTION identifier paramlist valid END;
 init : INIT valid END;
 inline : INLINE ~(END)*? END;
 
+// one-liners
+line : typedef|assign|functioncall;
+typedef : TYPE IDENTIFIER (EXTENDS IDENTIFIER)?;
+assign : (varconst IDENTIFIER?)? lvalue ASSIGN rvalue;
+
 // syntax
-paramlist : LPAREN (IDENTIFIER (COMMA? IDENTIFIER)*?)? RPAREN;
+paramlist : LPAREN (identifier (COMMA? identifier)*?)? RPAREN;
+varconst : VAR | CONST;
 
 // expressions, conditions, etc
+identifier : IDENTIFIER | identifier DOT identifier;
 evaluateable : expression | condition | assign;
 rvalue : expression | condition;
-lvalue : IDENTIFIER;
-assign : lvalue ASSIGN rvalue;
-expression : IDENTIFIER | p3arithmatic | LPAREN expression RPAREN | literal | functioncall;
+lvalue : identifier;
+expression : identifier | p3arithmatic | LPAREN expression RPAREN | literal | functioncall;
 condition : expression comparisonoperator expression | condition booleanoperator condition | bool;
-functioncall : IDENTIFIER paramlist;
+functioncall : identifier paramlist;
 
 // handy for combining expressions
-p0arithmatic : IDENTIFIER | literal | functioncall | LPAREN expression RPAREN;
+p0arithmatic : identifier | literal | functioncall | LPAREN expression RPAREN;
 p1arithmatic : p0arithmatic (CARAT p0arithmatic)*;
 p2arithmatic : p1arithmatic ((DIV|MULT) p1arithmatic)*;
 p3arithmatic : p2arithmatic ((SUB|PLUS) p2arithmatic)*;

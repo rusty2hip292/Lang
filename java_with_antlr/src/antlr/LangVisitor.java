@@ -101,11 +101,35 @@ public interface LangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitInline(LangParser.InlineContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link LangParser#line}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLine(LangParser.LineContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LangParser#typedef}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypedef(LangParser.TypedefContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LangParser#assign}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssign(LangParser.AssignContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link LangParser#paramlist}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitParamlist(LangParser.ParamlistContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LangParser#identifier}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIdentifier(LangParser.IdentifierContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link LangParser#evaluateable}.
 	 * @param ctx the parse tree
@@ -124,12 +148,6 @@ public interface LangVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitLvalue(LangParser.LvalueContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link LangParser#assign}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAssign(LangParser.AssignContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link LangParser#expression}.
 	 * @param ctx the parse tree

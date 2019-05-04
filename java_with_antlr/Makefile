@@ -8,7 +8,7 @@ test :
 	make clean
 
 run :
-	java -cp "./antlr-4.7.2-complete.jar;./bin" compiler.Compiler main.src lang
+	java -cp "./antlr-4.7.2-complete.jar;./bin" compiler.Compiler src/source/main.src src/source/lang
 
 parser : Lang.g4 Tokens.g4
 	java -cp "./antlr-4.7.2-complete.jar" org.antlr.v4.Tool -visitor -package antlr -o ./src/antlr Lang.g4

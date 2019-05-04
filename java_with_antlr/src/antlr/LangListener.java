@@ -158,6 +158,36 @@ public interface LangListener extends ParseTreeListener {
 	 */
 	void exitInline(LangParser.InlineContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link LangParser#line}.
+	 * @param ctx the parse tree
+	 */
+	void enterLine(LangParser.LineContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LangParser#line}.
+	 * @param ctx the parse tree
+	 */
+	void exitLine(LangParser.LineContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LangParser#typedef}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypedef(LangParser.TypedefContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LangParser#typedef}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypedef(LangParser.TypedefContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LangParser#assign}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssign(LangParser.AssignContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LangParser#assign}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssign(LangParser.AssignContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link LangParser#paramlist}.
 	 * @param ctx the parse tree
 	 */
@@ -167,6 +197,16 @@ public interface LangListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitParamlist(LangParser.ParamlistContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LangParser#identifier}.
+	 * @param ctx the parse tree
+	 */
+	void enterIdentifier(LangParser.IdentifierContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LangParser#identifier}.
+	 * @param ctx the parse tree
+	 */
+	void exitIdentifier(LangParser.IdentifierContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link LangParser#evaluateable}.
 	 * @param ctx the parse tree
@@ -197,16 +237,6 @@ public interface LangListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLvalue(LangParser.LvalueContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link LangParser#assign}.
-	 * @param ctx the parse tree
-	 */
-	void enterAssign(LangParser.AssignContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link LangParser#assign}.
-	 * @param ctx the parse tree
-	 */
-	void exitAssign(LangParser.AssignContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link LangParser#expression}.
 	 * @param ctx the parse tree

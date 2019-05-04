@@ -33,9 +33,14 @@ IF : 'if';
 FUNCTION : 'function'|'func'; // either
 INIT : 'init';
 INLINE : 'inline'|'inline-C';
+TYPE : 'type';
+PRIMITIVE : 'primitive';
 END : 'end';
 TRUE : 'true';
 FALSE : 'false';
+EXTENDS : 'extends';
+VAR : 'var';
+CONST : 'const';
 
 // leave these down here
 IDENTIFIER : [a-zA-Z_][a-zA-Z0-9_]*;

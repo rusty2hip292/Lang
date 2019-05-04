@@ -55,7 +55,7 @@ public class Reader {
 	public static void main(String[] args) {
 		System.out.println(read(args).get(0));
 	}
-	public static List<String> read(String[] args) {
+public static List<String> read(String[] args) {
 		
 		if(args.length < 1) {
 			panic("No source files, fatal error");
@@ -77,6 +77,25 @@ public class Reader {
 			code.add(read(f));
 		}
 		return code;
+	}
+	public static List<File> resolve(String[] args) {
+		
+		if(args.length < 1) {
+			panic("No source files, fatal error");
+		}
+		
+		File main = new File(args[0]);
+		if(!main.exists()) {
+			panic("Primary source file does not exist, fatal error");
+		}else if(main.isDirectory()) {
+			panic("Primary source file is a directory, fatal error");
+		}
+		List<File> sourceFiles = new ArrayList<File>(10 * args.length);
+		sourceFiles.add(main);
+		for(int i = 1; i < args.length; i++) {
+			addSource(args[i], sourceFiles, false);
+		}
+		return sourceFiles;
 	}
 	
 	public static String read(File f) {
