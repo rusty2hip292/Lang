@@ -21,7 +21,7 @@ bool : TRUE | FALSE;
 
 // blocks
 block : funcdef | init | inline;
-funcdef : FUNCTION identifier paramlist valid END;
+funcdef : LOCAL? FUNCTION identifier paramlist valid END;
 init : INIT valid END;
 inline : INLINE ~(END)*? END;
 
@@ -33,8 +33,9 @@ assign : lvalue ASSIGN rvalue;
 
 // syntax
 paramlist : LPAREN (identifier (COMMA? identifier)*?)? RPAREN;
+tuple : paramlist | LPAREN (expression (COMMA? expression)*?)? RPAREN;
 varconst : VAR | CONST;
-type : identifier | PRIMATIVE;
+type : identifier | PRIMATIVE | type MULT+;
 
 // expressions, conditions, etc
 identifier : IDENTIFIER | identifier DOT identifier;
@@ -43,7 +44,7 @@ rvalue : expression | condition;
 lvalue : identifier;
 expression : identifier | p3arithmatic | LPAREN expression RPAREN | literal | functioncall;
 condition : expression comparisonoperator expression | condition booleanoperator condition | bool;
-functioncall : identifier paramlist;
+functioncall : identifier tuple;
 
 // handy for combining expressions
 p0arithmatic : identifier | literal | functioncall | LPAREN expression RPAREN;

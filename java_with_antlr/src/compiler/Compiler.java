@@ -17,6 +17,7 @@ public class Compiler {
 	static {
 		listeners.add(new TypeExtractor());
 		listeners.add(new VariableExtractor());
+		listeners.add(new FunctionExtractor());
 	}
 	
 	private static LangParser makeParser(String filename) throws Exception {
@@ -48,8 +49,14 @@ public class Compiler {
 		return args;
 	}
 	
+	private static String main;
+	public static String mainProgram() {
+		return main;
+	}
 	public static void main(String[] args) {
-	
+		if(args.length > 0) {
+			main = args[0];
+		}
 		List<String> list = new LinkedList<String>();
 		for(String s : args) {
 			list.add(s);

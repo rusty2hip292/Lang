@@ -17,7 +17,11 @@ end
 local type test
 
 var a = 7
-var int t.t2 = 9
+local var int MyType.t1 = 9
+local var MyType.t2 = 12
+local var MyType.t3 = 13
+
+local var a = 9
 
 func myfunc()
 
@@ -48,7 +52,7 @@ end
 type MyType
 local type MyType2 extends MyType
 
-func func2()
+func func2(arg1, arg2 arg3)
 end
 
 func3(x, y, z)

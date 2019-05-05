@@ -14,4 +14,13 @@ public class VariableExtractor extends ScopedListener {
 			e.printStackTrace();
 		}
 	}
+	
+	public void exitFuncdef(FuncdefContext context) {
+		ParamlistContext pc = context.paramlist();
+		if(pc.identifier() != null) {
+			for(IdentifierContext ic : pc.identifier()) {
+				Scope.addToScope(this.currentScopeName(), program.Variable.declare(this.currentScopeName(), false, null, null, Identifier.identifier(ic), false, false));
+			}
+		}
+	}
 }

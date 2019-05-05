@@ -52,7 +52,7 @@ end
 type MyType
 local type MyType2 extends MyType
 
-func func2()
+func func2(arg1, arg2 arg3)
 end
 
 func3(x, y, z)
