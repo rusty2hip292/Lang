@@ -43,6 +43,7 @@ VAR : 'var';
 CONST : 'const';
 LOCAL : 'local';
 PRIMATIVE : 'int' | 'char' | 'double';
+STATIC : 'static';
 
 // leave these down here
 IDENTIFIER : [a-zA-Z_][a-zA-Z0-9_]*;

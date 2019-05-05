@@ -1,5 +1,7 @@
 package program;
 
+import java.util.HashMap;
+
 public class Type extends Scoped {
 
 	public Type(String name, boolean local) {
@@ -15,6 +17,21 @@ public class Type extends Scoped {
 			this.supertype = null;
 		}else {
 			this.supertype = supertype;
+		}
+	}
+	
+	/*
+	 * TODO
+	 * allow for local fields, methods
+	 */
+	private HashMap<String, Variable> vars = new HashMap<String, Variable>();
+	public void addVar(String name, Variable v) {
+		if(v != null) {
+			if(vars.get(name) != null) {
+				System.err.println("Variable " + name + " already exists in type " + this.name + ", fatal error");
+				System.exit(-1);
+			}
+			vars.put(name, v);
 		}
 	}
 }

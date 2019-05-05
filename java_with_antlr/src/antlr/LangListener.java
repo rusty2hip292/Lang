@@ -178,6 +178,16 @@ public interface LangListener extends ParseTreeListener {
 	 */
 	void exitTypedef(LangParser.TypedefContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link LangParser#declare}.
+	 * @param ctx the parse tree
+	 */
+	void enterDeclare(LangParser.DeclareContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LangParser#declare}.
+	 * @param ctx the parse tree
+	 */
+	void exitDeclare(LangParser.DeclareContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link LangParser#assign}.
 	 * @param ctx the parse tree
 	 */
@@ -207,6 +217,16 @@ public interface LangListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVarconst(LangParser.VarconstContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link LangParser#type}.
+	 * @param ctx the parse tree
+	 */
+	void enterType(LangParser.TypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LangParser#type}.
+	 * @param ctx the parse tree
+	 */
+	void exitType(LangParser.TypeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link LangParser#identifier}.
 	 * @param ctx the parse tree

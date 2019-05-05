@@ -16,6 +16,7 @@ public class Compiler {
 	public static List<LangListener> listeners = new LinkedList<LangListener>();
 	static {
 		listeners.add(new TypeExtractor());
+		listeners.add(new VariableExtractor());
 	}
 	
 	private static LangParser makeParser(String filename) throws Exception {

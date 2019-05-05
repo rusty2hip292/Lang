@@ -57,6 +57,9 @@ public class Scope {
 	}
 	
 	public static void addToScope(String scopename, Scoped item) {
+		if(item == null) {
+			return;
+		}
 		Scope s = getScope(item.local ? "local" : scopename);
 		if(s.getItem(item.name) != null) {
 			throw new IllegalArgumentException();

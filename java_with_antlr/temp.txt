@@ -7,7 +7,21 @@ init
 	x = 7
 end
 
+init
+	type testtype
+end
+init
+	type testtype
+end
+
+local type test
+
+var a = 7
+var int t.t2 = 9
+
 func myfunc()
+
+	type MyType3 extends MyType2
 
 	x = 10 +
 	12.6 -
@@ -32,7 +46,7 @@ func myfunc()
 end
 
 type MyType
-type MyType2 extends MyType
+local type MyType2 extends MyType
 
 func func2()
 end

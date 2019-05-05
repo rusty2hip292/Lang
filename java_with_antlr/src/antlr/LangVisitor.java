@@ -113,6 +113,12 @@ public interface LangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTypedef(LangParser.TypedefContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link LangParser#declare}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDeclare(LangParser.DeclareContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link LangParser#assign}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -130,6 +136,12 @@ public interface LangVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitVarconst(LangParser.VarconstContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link LangParser#type}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitType(LangParser.TypeContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link LangParser#identifier}.
 	 * @param ctx the parse tree

@@ -26,9 +26,9 @@ init : INIT valid END;
 inline : INLINE ~(END)*? END;
 
 // one-liners
-line : typedef|assign|functioncall;
+line : typedef|declare|assign|functioncall;
 typedef : LOCAL? TYPE IDENTIFIER (EXTENDS IDENTIFIER)?;
-declare : varconst type? assign;
+declare : LOCAL? STATIC? varconst type? assign;
 assign : lvalue ASSIGN rvalue;
 
 // syntax
