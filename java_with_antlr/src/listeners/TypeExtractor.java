@@ -16,6 +16,7 @@ public class TypeExtractor extends ScopedListener {
 			}
 		}catch(Exception e) {
 			System.err.println("type " + context.IDENTIFIER(0) + " already defined, fatal error");
+			System.exit(-1);
 		}
 	}
 }

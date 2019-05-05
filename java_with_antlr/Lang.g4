@@ -28,11 +28,13 @@ inline : INLINE ~(END)*? END;
 // one-liners
 line : typedef|assign|functioncall;
 typedef : LOCAL? TYPE IDENTIFIER (EXTENDS IDENTIFIER)?;
-assign : (varconst IDENTIFIER?)? lvalue ASSIGN rvalue;
+declare : varconst type? assign;
+assign : lvalue ASSIGN rvalue;
 
 // syntax
 paramlist : LPAREN (identifier (COMMA? identifier)*?)? RPAREN;
 varconst : VAR | CONST;
+type : identifier | PRIMATIVE;
 
 // expressions, conditions, etc
 identifier : IDENTIFIER | identifier DOT identifier;

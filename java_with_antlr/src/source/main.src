@@ -7,6 +7,13 @@ init
 	x = 7
 end
 
+init
+	type testtype
+end
+init
+	type testtype
+end
+
 local type test
 
 func myfunc()
