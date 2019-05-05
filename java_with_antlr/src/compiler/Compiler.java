@@ -8,7 +8,7 @@ import java.util.List;
 
 import org.antlr.v4.runtime.*;
 import listeners.*;
-
+import program.Scope;
 import antlr.*;
 
 public class Compiler {
@@ -56,5 +56,6 @@ public class Compiler {
 		args = handleFlags(list).toArray(args);
 		List<File> files = Reader.resolve(args);
 		handle(files);
+		Scope.print();
 	}
 }

@@ -198,6 +198,16 @@ public interface LangListener extends ParseTreeListener {
 	 */
 	void exitParamlist(LangParser.ParamlistContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link LangParser#varconst}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarconst(LangParser.VarconstContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LangParser#varconst}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarconst(LangParser.VarconstContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link LangParser#identifier}.
 	 * @param ctx the parse tree
 	 */

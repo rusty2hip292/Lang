@@ -7,7 +7,11 @@ init
 	x = 7
 end
 
+local type test
+
 func myfunc()
+
+	type MyType3 extends MyType2
 
 	x = 10 +
 	12.6 -
@@ -32,6 +36,7 @@ func myfunc()
 end
 
 type MyType
+local type MyType2 extends MyType
 
 func func2()
 end

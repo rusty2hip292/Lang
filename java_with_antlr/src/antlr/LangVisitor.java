@@ -125,6 +125,12 @@ public interface LangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitParamlist(LangParser.ParamlistContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link LangParser#varconst}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVarconst(LangParser.VarconstContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link LangParser#identifier}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

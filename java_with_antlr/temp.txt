@@ -32,6 +32,7 @@ func myfunc()
 end
 
 type MyType
+type MyType2 extends MyType
 
 func func2()
 end

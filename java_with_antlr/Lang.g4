@@ -27,7 +27,7 @@ inline : INLINE ~(END)*? END;
 
 // one-liners
 line : typedef|assign|functioncall;
-typedef : TYPE IDENTIFIER (EXTENDS IDENTIFIER)?;
+typedef : LOCAL? TYPE IDENTIFIER (EXTENDS IDENTIFIER)?;
 assign : (varconst IDENTIFIER?)? lvalue ASSIGN rvalue;
 
 // syntax
