@@ -45,4 +45,11 @@ public class Program {
 	public static void pop() {
 		context.pop();
 	}
+	
+	public static void compile() {
+		Scope.print();
+		Type.dump();
+		//Variable.dump();
+		//Function.dump();
+	}
 }

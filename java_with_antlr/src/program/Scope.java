@@ -4,8 +4,9 @@ import java.util.HashMap;
 
 public class Scope {
 
-	private static Scope global = new Scope();
-	private static Scope currentScope = global;
+	private static Scope global = new Scope("global");
+	private static Scope current = global;
+	public static String currentScope = "global";
 	private Scope outer;
 	private static HashMap<String, HashMap<String, Scope>> scopes = new HashMap<String, HashMap<String, Scope>>();
 	private HashMap<String, Scoped> items = new HashMap<String, Scoped>();
@@ -18,7 +19,15 @@ public class Scope {
 		return items.toString();
 	}
 	
-	private Scope() { }
+	private final String scopename;
+	private Scope(String scopename) {
+		this.scopename = scopename;
+		if(this != global) {
+			this.outer = current;
+		}else {
+			this.outer = null;
+		}
+	}
 	private static Scope getScope(String scopename) {
 		return getScope(scopename, true);
 	}
@@ -34,14 +43,14 @@ public class Scope {
 			}
 			map = new HashMap<String, Scope>();
 			scopes.put(filename, map);
-			map.put("local", new Scope());
+			map.put("local", new Scope("local"));
 		}
 		Scope s = map.get(scopename);
 		if(s == null) {
 			if(!make) {
 				return null;
 			}
-			s = new Scope();
+			s = new Scope(scopename);
 			map.put(scopename, s);
 			
 		}
@@ -51,8 +60,8 @@ public class Scope {
 		if(getScope(scopename, false) == null) {
 			return;
 		}
-		if(currentScope != global) {
-			currentScope = currentScope.outer;
+		if(current != global) {
+			current = current.outer;
 		}
 	}
 	
@@ -62,7 +71,7 @@ public class Scope {
 		}
 		Scope s = getScope(item.local ? "local" : scopename);
 		if(s.getItem(item.name) != null) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(item.name);
 		}
 		s.items.put(item.name, item);
 	}
@@ -75,7 +84,7 @@ public class Scope {
 		return (Type) s;
 	}
 	private static Scoped getItem(String scopename, String item) {
-		return getScope(scopename).getItem(item);
+		return item == null ? null : getScope(scopename).getItem(item);
 	}
 	private Scoped getItem(String item) {
 		if(this == global) {

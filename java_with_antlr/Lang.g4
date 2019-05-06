@@ -14,7 +14,7 @@ comment : COMMENT;
 // literals
 literal : string | numeric;
 string : '"' ('\\"' | ~('"'))* '"';
-numeric : integer | real;
+numeric : integer | real | bool;
 integer : NUMERIC_MODIFIER? NUMERIC;
 real : NUMERIC DOT NUMERIC;
 bool : TRUE | FALSE;

@@ -16,8 +16,7 @@ public class Compiler {
 	public static List<LangListener> listeners = new LinkedList<LangListener>();
 	static {
 		listeners.add(new TypeExtractor());
-		listeners.add(new VariableExtractor());
-		listeners.add(new FunctionExtractor());
+		listeners.add(new VariableAndFunctionExtractor());
 	}
 	
 	private static LangParser makeParser(String filename) throws Exception {
@@ -64,6 +63,6 @@ public class Compiler {
 		args = handleFlags(list).toArray(args);
 		List<File> files = Reader.resolve(args);
 		handle(files);
-		Scope.print();
+		program.Program.compile();
 	}
 }

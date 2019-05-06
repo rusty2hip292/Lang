@@ -12,9 +12,11 @@ import program.Scope;
 public abstract class ScopedListener extends LangBaseListener {
 	
 	private Stack<String> scope = new Stack<String>();
+	//private Stack<BlockContext> contexts = new Stack<BlockContext>();
 	
 	public ScopedListener() {
 		scope.add("global");
+		//contexts.add(null);
 	}
 	
 	protected String currentScopeName() {
@@ -24,10 +26,18 @@ public abstract class ScopedListener extends LangBaseListener {
 	private BigUnsignedInteger num = new BigUnsignedInteger();
 	public void enterBlock(BlockContext context) {
 		num.increment();
+		//contexts.push(context);
 		scope.push("scope_" + num.toString());
+		Scope.currentScope = scope.peek();
 	}
 	public void exitBlock(BlockContext context) {
-		Scope.closeScope(scope.pop());
+		//System.out.println(context.toString());
+		//System.out.println(scope.size());
+		//if(context == contexts.peek()) {
+			//contexts.pop();
+			Scope.closeScope(scope.pop());
+		//}
+		Scope.currentScope = scope.peek();
 	}
 }
 

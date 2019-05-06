@@ -20,8 +20,14 @@ var a = 7
 local var int MyType.t1 = 9
 local var MyType.t2 = 12
 local var MyType.t3 = 13
+var MyType.t4 = 12
 
-local var a = 9
+function MyType.function1()
+end
+function MyType.function2(a3)
+end
+
+local var a2 = 9
 
 func myfunc()
 

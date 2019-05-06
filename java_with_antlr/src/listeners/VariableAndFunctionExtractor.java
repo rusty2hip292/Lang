@@ -3,7 +3,7 @@ package listeners;
 import antlr.LangParser.*;
 import program.Scope;
 
-public class VariableExtractor extends ScopedListener {
+public class VariableAndFunctionExtractor extends ScopedListener {
 
 	public void exitDeclare(DeclareContext context) {
 		try {
@@ -14,12 +14,23 @@ public class VariableExtractor extends ScopedListener {
 			e.printStackTrace();
 		}
 	}
-	
+
+	private FuncdefContext lastContext = null;
 	public void exitFuncdef(FuncdefContext context) {
-		ParamlistContext pc = context.paramlist();
-		if(pc.identifier() != null) {
-			for(IdentifierContext ic : pc.identifier()) {
-				Scope.addToScope(this.currentScopeName(), program.Variable.declare(this.currentScopeName(), false, null, null, Identifier.identifier(ic), false, false));
+		if(lastContext != context) {
+			lastContext = context;
+			program.Function f = program.Function.makeFunction(this.currentScopeName(), Identifier.identifier(context.identifier()), context.LOCAL() != null);
+			if(f == null) {
+				return;
+			}
+			Scope.addToScope(this.currentScopeName(), f);
+			ParamlistContext pc = context.paramlist();
+			if(pc.identifier() != null) {
+				for(IdentifierContext ic : pc.identifier()) {
+					program.Variable v = program.Variable.declare(this.currentScopeName(), false, null, null, Identifier.identifier(ic), false, false);
+					f.addParameter(v);
+					Scope.addToScope(this.currentScopeName(), v);
+				}
 			}
 		}
 	}
