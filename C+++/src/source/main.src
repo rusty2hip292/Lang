@@ -1,0 +1,98 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+typedef struct num {
+	int value;
+	struct num *next;
+} num;
+
+num *stack = 0;
+int stacksize = 0;
+
+int needsToPush = 0;
+int temp = 0;
+void println(num *stack);
+void push(int val) {
+	if(needsToPush) {
+		stacksize++;
+		needsToPush = 0;
+		temp = 0;
+		num *top = (num*) malloc(sizeof(num));
+		top->next = stack;
+		top->value = val;
+		stack = top;
+		println(stack);
+	}
+}
+int pop() {
+	if(stacksize > 0) {
+		stacksize--;
+		int val = stack->value;
+		num *old = stack;
+		stack = stack->next;
+		free(old);
+		return val;
+	}
+	return 0;
+}
+void print(num *elem) {
+	if(elem == 0) {
+		return;
+	}
+	print(elem->next);
+	printf("%d ", elem->value);
+}
+void println(num *elem) {
+	printf("\n");
+	print(elem);
+	//printf("\n");
+}
+
+void operate(char operator) {
+  if(operator >= '0' && operator <= '9') {
+	printf("%c", operator);
+	needsToPush = 1;
+	temp *= 10;
+	temp += operator - '0';
+	return;
+  }else {
+	push(temp);
+  }
+  if(stacksize > 1) {
+    switch(operator) {
+	case '*':
+	printf("*");
+	needsToPush = 1;
+	push(pop() * pop());
+	break;
+	case '/':
+	printf("/");
+	needsToPush = 1;
+	int divisor = pop();
+	if(divisor == 0) {
+		printf("\ncannot divide by 0");
+		push(divisor);
+		break;
+	}
+	push(pop() / divisor);
+	break;
+	case '+':
+	printf("+");
+	needsToPush = 1;
+	push(pop() + pop());
+	break;
+	case '-':
+	printf("-");
+	needsToPush = 1;
+	int less = pop();
+	push(pop() - less);
+	break;
+    }
+  }
+}
+
+int main() {
+    while(1) {
+        operate((char) getc(stdin));
+    }
+}

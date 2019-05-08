@@ -6,3 +6,9 @@
 /LangLexer.tokens
 /LangListener.java
 /LangParser.java
+/Cplusplusplus.tokens
+/CplusplusplusBaseListener.java
+/CplusplusplusLexer.java
+/CplusplusplusLexer.tokens
+/CplusplusplusListener.java
+/CplusplusplusParser.java
