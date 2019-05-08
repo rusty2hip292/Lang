@@ -24,19 +24,24 @@ public class Program {
 		}
 	}
 	
+	static {
+		Program.writeContext(Program.Context.MAIN, "int main() {\n");
+	}
+	
 	public static Stack<Context> context = new Stack<Context>();
 	private static StringBuffer currentContext;
 	public static void push(Context c) {
+		//System.out.println(c);
 		context.push(c);
 		if(sb[c.getInt()] == null) {
 			sb[c.getInt()] = new StringBuffer();
 		}
 		currentContext = sb[c.getInt()];
 	}
-	public void write(String code) {
+	public static void write(String code) {
 		currentContext.append(code);
 	}
-	public void writeContext(Context c, String code) {
+	public static void writeContext(Context c, String code) {
 		if(sb[c.getInt()] == null) {
 			sb[c.getInt()] = new StringBuffer();
 		}
@@ -47,9 +52,14 @@ public class Program {
 	}
 	
 	public static void compile() {
+		Program.writeContext(Program.Context.MAIN, "\n}\n");
+		StringBuffer program = new StringBuffer();
+		for(int i = 0; i < Context.values().length - 1; i++) {
+			if(sb[i] != null) {
+				program.append(sb[i].toString());
+			}
+		}
+		System.out.println(program.toString());
 		Scope.print();
-		Type.dump();
-		//Variable.dump();
-		//Function.dump();
 	}
 }

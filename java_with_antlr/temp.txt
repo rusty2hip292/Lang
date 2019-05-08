@@ -4,7 +4,7 @@ inline
 end
 
 init
-	x = 7
+	var int x = 7
 end
 
 init
@@ -16,18 +16,25 @@ end
 
 local type test
 
-var a = 7
+var int a = 7
 local var int MyType.t1 = 9
-local var MyType.t2 = 12
-local var MyType.t3 = 13
-var MyType.t4 = 12
+local var int MyType.t2 = 12
+local var MyType MyType.t3 = 13
+var MyType t6 = 0
+t6.t3.t3.t3.t9 = 0
+var double MyType.t4 = 12
+var int MyType.t5 = 6
 
-function MyType.function1()
+t6.function1()
+
+function int MyType.function1()
+end
+function int MyType.function2(int a3)
 end
 
-local var a = 9
+local var int a2 = 9
 
-func myfunc()
+func int myfunc()
 
 	type MyType3 extends MyType2
 
@@ -39,7 +46,7 @@ func myfunc()
 	x2 = 5 + 7 - 6 + 7
 	x3 = 5 + 7 - (6 + 7)
 
-	func myfunc2()
+	func int myfunc2()
 	x=" "
 	y=" \" " // comment1
 		/*
@@ -56,7 +63,7 @@ end
 type MyType
 local type MyType2 extends MyType
 
-func func2(arg1, arg2 arg3)
+func int func2(int arg1, int arg2 int arg3)
 end
 
 func3(x, y, z)

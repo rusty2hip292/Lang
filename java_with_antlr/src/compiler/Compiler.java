@@ -17,6 +17,7 @@ public class Compiler {
 	static {
 		listeners.add(new TypeExtractor());
 		listeners.add(new VariableAndFunctionExtractor());
+		listeners.add(new CodeListener());
 	}
 	
 	private static LangParser makeParser(String filename) throws Exception {
@@ -53,8 +54,8 @@ public class Compiler {
 		return main;
 	}
 	public static void main(String[] args) {
-		if(args.length > 0) {
-			main = args[0];
+		if(args.length <= 0) {
+			return;
 		}
 		List<String> list = new LinkedList<String>();
 		for(String s : args) {
@@ -62,6 +63,7 @@ public class Compiler {
 		}
 		args = handleFlags(list).toArray(args);
 		List<File> files = Reader.resolve(args);
+		main = files.get(0).getAbsolutePath();
 		handle(files);
 		program.Program.compile();
 	}

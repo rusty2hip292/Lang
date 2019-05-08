@@ -83,6 +83,20 @@ public class Scope {
 		}
 		return (Type) s;
 	}
+	public static Function getFunction(String scopename, String funcname) {
+		Scoped s = getItem(scopename, funcname);
+		if(s == null || !(s instanceof Function)) {
+			return null;
+		}
+		return (Function) s;
+	}
+	public static Variable getVariable(String scopename, String varname) {
+		Scoped s = getItem(scopename, varname);
+		if(s == null || !(s instanceof Variable)) {
+			return null;
+		}
+		return (Variable) s;
+	}
 	private static Scoped getItem(String scopename, String item) {
 		return item == null ? null : getScope(scopename).getItem(item);
 	}

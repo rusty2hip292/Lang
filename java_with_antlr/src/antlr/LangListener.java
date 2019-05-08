@@ -138,6 +138,16 @@ public interface LangListener extends ParseTreeListener {
 	 */
 	void exitFuncdef(LangParser.FuncdefContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link LangParser#signature}.
+	 * @param ctx the parse tree
+	 */
+	void enterSignature(LangParser.SignatureContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link LangParser#signature}.
+	 * @param ctx the parse tree
+	 */
+	void exitSignature(LangParser.SignatureContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link LangParser#init}.
 	 * @param ctx the parse tree
 	 */

@@ -12,7 +12,7 @@ debugging : evaluateable;
 comment : COMMENT;
 
 // literals
-literal : string | numeric;
+literal : string | numeric | PRIMATIVE MULT;
 string : '"' ('\\"' | ~('"'))* '"';
 numeric : integer | real | bool;
 integer : NUMERIC_MODIFIER? NUMERIC;
@@ -21,21 +21,22 @@ bool : TRUE | FALSE;
 
 // blocks
 block : funcdef | init | inline;
-funcdef : LOCAL? FUNCTION identifier paramlist valid END;
+funcdef : signature valid END;
+signature : LOCAL? FUNCTION type identifier paramlist;
 init : INIT valid END;
 inline : INLINE ~(END)*? END;
 
 // one-liners
 line : typedef|declare|assign|functioncall;
 typedef : LOCAL? TYPE IDENTIFIER (EXTENDS IDENTIFIER)?;
-declare : LOCAL? STATIC? varconst type? assign;
+declare : LOCAL? STATIC? varconst type assign;
 assign : lvalue ASSIGN rvalue;
 
 // syntax
-paramlist : LPAREN (identifier (COMMA? identifier)*?)? RPAREN;
-tuple : paramlist | LPAREN (expression (COMMA? expression)*?)? RPAREN;
+paramlist : LPAREN (type identifier (COMMA? type identifier)*?)? RPAREN;
+tuple : LPAREN (expression (COMMA? expression)*?)? RPAREN;
 varconst : VAR | CONST;
-type : identifier | PRIMATIVE | type MULT+;
+type : identifier | PRIMATIVE;
 
 // expressions, conditions, etc
 identifier : IDENTIFIER | identifier DOT identifier;

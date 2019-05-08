@@ -39,9 +39,11 @@ public class Type extends Scoped {
 			fields.put(name, v);
 		}
 	}
+	public Variable getField(String name) {
+		return this.fields.get(name);
+	}
 	private HashMap<String, Function> methods = new HashMap<String, Function>();
 	public void addMethod(String name, Function f) {
-		System.out.println(name);
 		if(f != null) {
 			if(methods.get(name) != null) {
 				System.out.println(name);
@@ -51,6 +53,9 @@ public class Type extends Scoped {
 			}
 			methods.put(name, f);
 		}
+	}
+	public Function getMethod(String name) {
+		return this.methods.get(name);
 	}
 	
 	public String toString() {

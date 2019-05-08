@@ -19,12 +19,12 @@ public class VariableAndFunctionExtractor extends ScopedListener {
 	public void exitFuncdef(FuncdefContext context) {
 		if(lastContext != context) {
 			lastContext = context;
-			program.Function f = program.Function.makeFunction(this.currentScopeName(), Identifier.identifier(context.identifier()), context.LOCAL() != null);
+			program.Function f = program.Function.makeFunction(this.currentScopeName(), Identifier.identifier(context.signature().identifier()), context.signature().LOCAL() != null);
 			if(f == null) {
 				return;
 			}
-			Scope.addToScope(this.currentScopeName(), f);
-			ParamlistContext pc = context.paramlist();
+			Scope.addToScope(this.outerScope(), f);
+			ParamlistContext pc = context.signature().paramlist();
 			if(pc.identifier() != null) {
 				for(IdentifierContext ic : pc.identifier()) {
 					program.Variable v = program.Variable.declare(this.currentScopeName(), false, null, null, Identifier.identifier(ic), false, false);

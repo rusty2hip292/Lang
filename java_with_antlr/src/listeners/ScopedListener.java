@@ -12,13 +12,15 @@ import program.Scope;
 public abstract class ScopedListener extends LangBaseListener {
 	
 	private Stack<String> scope = new Stack<String>();
-	//private Stack<BlockContext> contexts = new Stack<BlockContext>();
+	private Stack<String> outer = new Stack<String>();
 	
 	public ScopedListener() {
 		scope.add("global");
-		//contexts.add(null);
 	}
 	
+	protected String outerScope() {
+		return outer.peek();
+	}
 	protected String currentScopeName() {
 		return scope.peek();
 	}
@@ -26,7 +28,7 @@ public abstract class ScopedListener extends LangBaseListener {
 	private BigUnsignedInteger num = new BigUnsignedInteger();
 	public void enterBlock(BlockContext context) {
 		num.increment();
-		//contexts.push(context);
+		outer.push(scope.peek());
 		scope.push("scope_" + num.toString());
 		Scope.currentScope = scope.peek();
 	}

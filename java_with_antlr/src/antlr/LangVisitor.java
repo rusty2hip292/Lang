@@ -89,6 +89,12 @@ public interface LangVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFuncdef(LangParser.FuncdefContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link LangParser#signature}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSignature(LangParser.SignatureContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link LangParser#init}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
