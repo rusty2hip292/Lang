@@ -1,0 +1,2 @@
+String hello = "hello world"
+print(hello)

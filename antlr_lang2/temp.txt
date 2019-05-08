@@ -1,0 +1,70 @@
+
+inline
+	hello, Charles
+end
+
+init
+	var int x = 7
+end
+
+init
+	type testtype
+end
+init
+	type testtype
+end
+
+local type test
+
+var int a = 7
+local var int MyType.t1 = 9
+local var int MyType.t2 = 12
+local var MyType MyType.t3 = 13
+var MyType t6 = 0
+t6.t3.t3.t3.t9 = 0
+var double MyType.t4 = 12
+var int MyType.t5 = 6
+
+t6.function1()
+
+function int MyType.function1()
+end
+function int MyType.function2(int a3)
+end
+
+local var int a2 = 9
+
+func int myfunc()
+
+	type MyType3 extends MyType2
+
+	x = 10 +
+	12.6 -
+	0x12 *
+	0b12 <= 12 and true
+
+	x2 = 5 + 7 - 6 + 7
+	x3 = 5 + 7 - (6 + 7)
+
+	func int myfunc2()
+	x=" "
+	y=" \" " // comment1
+		/*
+			// rgfd
+		/*
+			comment2
+		*/
+	end
+	inline
+			srgdfhgnh
+	end
+end
+
+type MyType
+local type MyType2 extends MyType
+
+func int func2(int arg1, int arg2 int arg3)
+end
+
+func3(x, y, z)
+

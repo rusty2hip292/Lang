@@ -1,0 +1,38 @@
+
+inline
+	hello, Charles
+end
+
+init
+	x = 7
+end
+
+func myfunc()
+
+	x = 10 +
+	12.6 -
+	0x12 *
+	0b12 <= 12 and true
+
+	x2 = 5 + 7 - 6 + 7
+	x3 = 5 + 7 - (6 + 7)
+
+	func myfunc2()
+	" "
+	" \" " // comment1
+		/*
+			// rgfd
+		/*
+			comment2
+		*/
+	end
+	inline
+			srgdfhgnh
+	end
+end
+
+func func2()
+end
+
+func3(x, y, z)
+
