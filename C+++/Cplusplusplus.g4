@@ -27,14 +27,20 @@
 /** C 2011 grammar built from the C11 Spec */
 grammar Cplusplusplus;
 
-program : (noout | out)+?;
+program : code EOF;
+code : (noout | out)+?;
 
 noout : oursyntax;
-out : ANYTHING+?;
+out : ANYTHINGELSE | IDENTIFIER | WHITESPACE | bracketed;
 
-bracketed : '{' program '}';
+oursyntax : classdef;
 
-oursyntax : IDENTIFIER IDENTIFIER bracketed; // type name code
+classdef : 'class' WHITESPACE? IDENTIFIER WHITESPACE? bracketed;
 
-IDENTIFIER : [a-zA-Z_] [a-zA-Z_0-9]*?;
-ANYTHING : . | '\n';
+bracketed : '{' code '}';
+
+IDENTIFIER : [a-zA-Z_] [a-zA-Z_0-9]*;
+
+WHITESPACE : [\n\t\r ]+;
+
+ANYTHINGELSE : (.|'\n')+?;

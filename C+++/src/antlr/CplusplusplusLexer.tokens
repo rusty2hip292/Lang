@@ -1,0 +1,9 @@
+T__0=1
+T__1=2
+T__2=3
+IDENTIFIER=4
+WHITESPACE=5
+ANYTHINGELSE=6
+'class'=1
+'{'=2
+'}'=3

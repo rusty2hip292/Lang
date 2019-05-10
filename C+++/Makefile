@@ -10,8 +10,8 @@ test :
 run :
 	java -cp "./antlr-4.7.2-complete.jar;./bin" compiler.Compiler src/source/main.src src/source/lang
 
-parser : Cplusplusplus.g4 Tokens.g4
-	java -cp "./antlr-4.7.2-complete.jar" org.antlr.v4.Tool -visitor -package antlr -o ./src/antlr Lang.g4
+parser : Cplusplusplus.g4
+	java -cp "./antlr-4.7.2-complete.jar" org.antlr.v4.Tool -visitor -package antlr -o ./src/antlr Cplusplusplus.g4
 	javac -cp "./antlr-4.7.2-complete.jar" src/antlr/*.java -s bin/antlr
 
 clean :

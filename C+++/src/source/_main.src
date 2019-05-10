@@ -9,16 +9,6 @@ typedef struct num {
 num *stack = 0;
 int stacksize = 0;
 
-
-class MyClass {
-
-	int field1;
-	double field2;
-	char *string;
-
-}
-
-
 int needsToPush = 0;
 int temp = 0;
 void println(num *stack);
@@ -106,4 +96,3 @@ int main() {
         operate((char) getc(stdin));
     }
 }
-
