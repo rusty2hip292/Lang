@@ -1,108 +1,37 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdint.h>
 
-typedef struct num {
-	int value;
-	struct num *next;
-} num;
 
-num *stack = 0;
-int stacksize = 0;
-
+int main();
 
 class MyClass {
-
-	int field1;
-	double field2;
-	char *string;
-
+	struct MyClass *this = tempMyClass;
+	int a = 12;
+	int b = 91;
+	int c = 13;
+	int (*print)(const char* fmt, ...) = printf;
+	uint8_t h = 2;
 }
 
-
-int needsToPush = 0;
-int temp = 0;
-void println(num *stack);
-void push(int val) {
-	if(needsToPush) {
-		stacksize++;
-		needsToPush = 0;
-		temp = 0;
-		num *top = (num*) malloc(sizeof(num));
-		top->next = stack;
-		top->value = val;
-		stack = top;
-		println(stack);
-	}
-}
-int pop() {
-	if(stacksize > 0) {
-		stacksize--;
-		int val = stack->value;
-		num *old = stack;
-		stack = stack->next;
-		free(old);
-		return val;
-	}
-	return 0;
-}
-void print(num *elem) {
-	if(elem == 0) {
-		return;
-	}
-	print(elem->next);
-	printf("%d ", elem->value);
-}
-void println(num *elem) {
-	printf("\n");
-	print(elem);
-	//printf("\n");
-}
-
-void operate(char operator) {
-  if(operator >= '0' && operator <= '9') {
-	printf("%c", operator);
-	needsToPush = 1;
-	temp *= 10;
-	temp += operator - '0';
-	return;
-  }else {
-	push(temp);
-  }
-  if(stacksize > 1) {
-    switch(operator) {
-	case '*':
-	printf("*");
-	needsToPush = 1;
-	push(pop() * pop());
-	break;
-	case '/':
-	printf("/");
-	needsToPush = 1;
-	int divisor = pop();
-	if(divisor == 0) {
-		printf("\ncannot divide by 0");
-		push(divisor);
-		break;
-	}
-	push(pop() / divisor);
-	break;
-	case '+':
-	printf("+");
-	needsToPush = 1;
-	push(pop() + pop());
-	break;
-	case '-':
-	printf("-");
-	needsToPush = 1;
-	int less = pop();
-	push(pop() - less);
-	break;
-    }
-  }
+int myprintf(const char* fmt, ...) {
+	printf("super secret message, should only print in extreme emergencies!\n");
 }
 
 int main() {
-    while(1) {
-        operate((char) getc(stdin));
-    }
+
+  MyClass a = new MyClass;
+  MyClass a2 = new MyClass;
+
+  a2->b = 19;
+  a2->h = (uint8_t) (uint64_t) 259;
+
+  a->print("%d %d %d\n", a->a, a->b, a->h);
+  a2->print("%d %d %d\n", a2->a, a2->b, a2->h);
+  a2->print = myprintf;
+  a2->print("");
+  
+  printf("%d\n", a == a->this);
+
+  return 0;
 }

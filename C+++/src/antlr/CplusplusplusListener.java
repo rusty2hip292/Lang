@@ -8,6 +8,46 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface CplusplusplusListener extends ParseTreeListener {
 	/**
+	 * Enter a parse tree produced by {@link CplusplusplusParser#identifier}.
+	 * @param ctx the parse tree
+	 */
+	void enterIdentifier(CplusplusplusParser.IdentifierContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CplusplusplusParser#identifier}.
+	 * @param ctx the parse tree
+	 */
+	void exitIdentifier(CplusplusplusParser.IdentifierContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CplusplusplusParser#whitespace}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhitespace(CplusplusplusParser.WhitespaceContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CplusplusplusParser#whitespace}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhitespace(CplusplusplusParser.WhitespaceContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CplusplusplusParser#anythingelse}.
+	 * @param ctx the parse tree
+	 */
+	void enterAnythingelse(CplusplusplusParser.AnythingelseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CplusplusplusParser#anythingelse}.
+	 * @param ctx the parse tree
+	 */
+	void exitAnythingelse(CplusplusplusParser.AnythingelseContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CplusplusplusParser#eof}.
+	 * @param ctx the parse tree
+	 */
+	void enterEof(CplusplusplusParser.EofContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CplusplusplusParser#eof}.
+	 * @param ctx the parse tree
+	 */
+	void exitEof(CplusplusplusParser.EofContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link CplusplusplusParser#program}.
 	 * @param ctx the parse tree
 	 */
@@ -67,6 +107,16 @@ public interface CplusplusplusListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitClassdef(CplusplusplusParser.ClassdefContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link CplusplusplusParser#new_}.
+	 * @param ctx the parse tree
+	 */
+	void enterNew_(CplusplusplusParser.New_Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link CplusplusplusParser#new_}.
+	 * @param ctx the parse tree
+	 */
+	void exitNew_(CplusplusplusParser.New_Context ctx);
 	/**
 	 * Enter a parse tree produced by {@link CplusplusplusParser#bracketed}.
 	 * @param ctx the parse tree

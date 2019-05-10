@@ -11,6 +11,30 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface CplusplusplusVisitor<T> extends ParseTreeVisitor<T> {
 	/**
+	 * Visit a parse tree produced by {@link CplusplusplusParser#identifier}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIdentifier(CplusplusplusParser.IdentifierContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CplusplusplusParser#whitespace}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhitespace(CplusplusplusParser.WhitespaceContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CplusplusplusParser#anythingelse}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAnythingelse(CplusplusplusParser.AnythingelseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CplusplusplusParser#eof}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEof(CplusplusplusParser.EofContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link CplusplusplusParser#program}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -46,6 +70,12 @@ public interface CplusplusplusVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitClassdef(CplusplusplusParser.ClassdefContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link CplusplusplusParser#new_}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNew_(CplusplusplusParser.New_Context ctx);
 	/**
 	 * Visit a parse tree produced by {@link CplusplusplusParser#bracketed}.
 	 * @param ctx the parse tree

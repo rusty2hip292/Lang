@@ -16,6 +16,54 @@ public class CplusplusplusBaseListener implements CplusplusplusListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterIdentifier(CplusplusplusParser.IdentifierContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIdentifier(CplusplusplusParser.IdentifierContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterWhitespace(CplusplusplusParser.WhitespaceContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWhitespace(CplusplusplusParser.WhitespaceContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAnythingelse(CplusplusplusParser.AnythingelseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAnythingelse(CplusplusplusParser.AnythingelseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterEof(CplusplusplusParser.EofContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEof(CplusplusplusParser.EofContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterProgram(CplusplusplusParser.ProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -83,6 +131,18 @@ public class CplusplusplusBaseListener implements CplusplusplusListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitClassdef(CplusplusplusParser.ClassdefContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNew_(CplusplusplusParser.New_Context ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNew_(CplusplusplusParser.New_Context ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
