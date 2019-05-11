@@ -54,8 +54,8 @@ public class Function extends Scoped {
 		int index = name.indexOf(".");
 		if(index < 0) {
 			Function f = Scope.getFunction(scopename, context.identifier().getText());
-			System.out.println(scopename);
-			System.out.println(f);
+			//System.out.println(scopename);
+			//System.out.println(f);
 			String call = "";
 			call += f.newName() + "(";
 			boolean first = true;
@@ -81,7 +81,6 @@ public class Function extends Scoped {
 		}
 		if(v != null && v.type() != null) {
 			Function f = v.type().getMethod(parts[part]);
-			System.out.println(f);
 			return "// TODO handle methods";
 		}
 		System.err.println("Could not invoke method " + parts[part] + ", fatal error");

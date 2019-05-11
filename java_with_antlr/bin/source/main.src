@@ -46,15 +46,6 @@ func int myfunc()
 	x2 = 5 + 7 - 6 + 7
 	x3 = 5 + 7 - (6 + 7)
 
-	func int myfunc2()
-	x=" "
-	y=" \" " // comment1
-		/*
-			// rgfd
-		/*
-			comment2
-		*/
-	end
 	inline
 			srgdfhgnh
 	end

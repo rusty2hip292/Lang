@@ -22,7 +22,7 @@ public class EverythingListener extends CplusplusplusBaseListener {
 	private HashMap<String, String> init = new HashMap<String, String>();
 	StringBuffer insideClassdef = new StringBuffer();
 	
-	private static Pattern p = Pattern.compile("[\\s]*([a-zA-Z_][a-zA-Z_0-9]*)[\\s]*(.+?)[\\s]*=[\\s]*((.|\\s)+?)[\\s]*;");
+	private static Pattern p = Pattern.compile("[\\s]*([a-zA-Z_][a-zA-Z_0-9]*)[\\s]*(.+?)[\\s]*(=[\\s]*((.|\\s)+?)[\\s]*)?;");
 	private void handle(String className) {
 		StringBuffer prev = this.insideClassdef;
 		this.insideClassdef = new StringBuffer();
@@ -34,9 +34,11 @@ public class EverythingListener extends CplusplusplusBaseListener {
 			String name = m.group(2);
 			String adjustedName = name.replaceAll("(\\(\\*)|(\\)\\([^*].*$)", "").replaceAll(".+? |\\*", "");
 			//System.err.println(adjustedName);
-			String value = m.group(3);
+			String value = m.group(4);
 			System.out.println(String.format("%s %s;", type, name, value));
-			initials.append(String.format("temp%s->%s = %s, ", className, adjustedName, value));
+			if(value != null) {
+				initials.append(String.format("temp%s->%s = %s, ", className, adjustedName, value));
+			}
 		}
 		initials.append(String.format("temp%s);", className));
 		init.put(className, initials.toString());

@@ -220,68 +220,7 @@ public class CodeListener extends ScopedListener {
 	}
 
 	@Override
-	public void enterEvaluateable(EvaluateableContext ctx) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void exitEvaluateable(EvaluateableContext ctx) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void enterRvalue(RvalueContext ctx) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void exitRvalue(RvalueContext ctx) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void enterLvalue(LvalueContext ctx) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void exitLvalue(LvalueContext ctx) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void enterExpression(ExpressionContext ctx) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void exitExpression(ExpressionContext ctx) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void enterCondition(ConditionContext ctx) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void exitCondition(ConditionContext ctx) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void exitFunctioncall(FunctioncallContext ctx) {
-		System.out.println(Program.context.peek());
 		Program.write(program.Function.fix(ctx, this.currentScopeName()));
 	}
 

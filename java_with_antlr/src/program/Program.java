@@ -59,7 +59,7 @@ public class Program {
 				program.append(sb[i].toString());
 			}
 		}
+		System.out.println("-----------");
 		System.out.println(program.toString());
-		Scope.print();
 	}
 }

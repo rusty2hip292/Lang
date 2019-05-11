@@ -7,9 +7,9 @@ int main();
 
 class MyClass {
 	struct MyClass *this = tempMyClass;
-	int a = 12;
+	int a;
 	int b = 91;
-	int c = 13;
+	int c;
 	int (*print)(const char* fmt, ...) = printf;
 	uint8_t h = 2;
 }
